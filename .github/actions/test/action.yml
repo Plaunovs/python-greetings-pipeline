@@ -1,0 +1,25 @@
+name: Run JS tests
+description: Run tests using npm and environment variable
+
+inputs:
+  enviroment:
+    description: Environment
+    required: true
+    default: dev
+
+runs:
+  using: "composite"
+  steps:
+    - name: Starting Job
+      run: echo "Testing on ${{ inputs.enviroment }} has started"
+      shell: cmd
+
+    - name: npm install
+      working-directory: ./js-api
+      run: npm install
+      shell: cmd
+
+    - name: Run tests
+      working-directory: ./js-api
+      run: npm run greetings greetings_${{ inputs.enviroment }}
+      shell: cmd
