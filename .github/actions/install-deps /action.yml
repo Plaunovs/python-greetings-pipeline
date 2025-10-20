@@ -1,0 +1,21 @@
+runs:
+  using: "composite"
+  steps:
+    - name: Message about starting
+      run: echo "Pip and deps installing has started"
+      shell: cmd   
+    - uses: actions/checkout@v3.5.2
+      with:
+        repository: 'mtararujs/python-greetings'
+        ref: "4e911440a9886c7c26ccbb4eb55f0bc2a5067b51"
+        path: 'py-gre'
+        
+    - uses: actions/checkout@v4
+      with: 
+        repository: 'mtararujs/course-js-api-framework'
+        ref: "7032ee862638108d4b9ad455e25e92a846c01ece"
+        path: js-api
+    - name: Install dependecies
+      working-directory: py-gre
+      run: "pip install -r requirements.txt"
+      shell: cmd
